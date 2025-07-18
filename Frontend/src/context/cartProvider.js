@@ -23,7 +23,7 @@ const CartProvider = ({ children }) => {
   const getCartOfUserInitially = async () => {
     try {
       console.log("User Data ", userData);
-      const data = await getCartOfUserService(userData.user.userId);
+      const data = await getCartOfUserService(userData?.user?.userId);
       setCart(data);
       console.log("Cart is ", data);
     } catch (error) {
@@ -47,7 +47,7 @@ const CartProvider = ({ children }) => {
         return;
       }
       const data = await addItemToCartService(
-        userData.user.userId,
+        userData?.user?.userId,
         productId,
         quantity
       );
@@ -62,7 +62,7 @@ const CartProvider = ({ children }) => {
   const removeItemFromCart = async (cartItemId, popUpMsg) => {
     try {
       const data = await removeItemsFromCartService(
-        userData.user.userId,
+        userData?.user?.userId,
         cartItemId
       );
       setCart(data);

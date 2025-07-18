@@ -325,20 +325,20 @@ const SingleOrderView = ({ orders, orderNo }) => {
               <Button
                 variant="warning mx-4"
                 onClick={(event) => handleShowOfUpdate()}
-                hidden={userData.user.roles.length === 1}
+                hidden={userData?.user?.roles.length === 1}
               >
                 Update Order
               </Button>
 
               <Button
                 variant="danger mx-4"
-                hidden={userData.user.roles.length === 1}
+                hidden={userData?.user?.roles.length === 1}
               >
                 Delete Order
               </Button>
               <Button
                 variant="success"
-                hidden={!(userData.user.roles.length === 1)}
+                hidden={!(userData?.user?.roles.length === 1)}
               >
                 Click Here To Pay
               </Button>

@@ -22,7 +22,13 @@ import {
   updateUserProfileImg,
 } from "../Services/userService";
 import { toast } from "react-toastify";
+import useJwtTokenExpire from "../CustomHooks/useJwtTokenExpire";
 const ProfileView = () => {
+  
+  const jwtTokenExpire=useJwtTokenExpire();
+  if(jwtTokenExpire){
+    console.log("JWT Token Expire")
+  }
   const userCont = useContext(userContext);
   console.log("User COntext ", userCont);
   const [user, setUser] = useState({});
@@ -111,7 +117,7 @@ const ProfileView = () => {
     if (changeInProfile) {
       setLoading(true);
       try {
-        console.log("User That is Passing to Update " + JSON.stringify(user));
+        // console.log("User That is Passing to Update " + JSON.stringify(user));
         // ✅ First API call: Update user
         await updateUser(user);
 
@@ -354,7 +360,7 @@ const ProfileView = () => {
         </Card.Body>
 
         {/* Action Buttons */}
-        {userCont?.userData.user?.userId === userId ? (
+        {userCont?.userData?.user?.userId === userId ? (
           <Container className="text-center pb-3">
             <Button variant="primary" className="me-2" onClick={handleShow}>
               Update Profile

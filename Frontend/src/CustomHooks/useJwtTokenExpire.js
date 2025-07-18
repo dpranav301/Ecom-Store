@@ -12,6 +12,8 @@ const useJwtTokenExpire = () => {
     const jwtToken = getJwtTokenFromLocalStorage();
     const isExpired = isJwtExpired(jwtToken);
 
+    console.log("Is JWT Token Expire ",jwtToken);
+    console.log("Is Expired ",isExpired);
     if (isExpired) {
       setExpired(true);
       toast.error("Please Login Again");
