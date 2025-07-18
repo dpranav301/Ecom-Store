@@ -1,15 +1,23 @@
 package com.ecom;
 
+import java.util.Optional;
+import java.util.UUID;
+
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-@SpringBootApplication
-public class SpringCoreConceptApplication {
+import com.ecom.entity.Role;
+import com.ecom.repository.RoleRepository;
 
-//	@Autowired
-//	private RoleRepository roleRepository;
+@SpringBootApplication
+public class SpringCoreConceptApplication implements CommandLineRunner{
+
+	@Autowired
+	private RoleRepository roleRepository;
 //	@Autowired
 //	private JwtHelper jwtHelper;
 //	@Autowired
@@ -19,28 +27,28 @@ public class SpringCoreConceptApplication {
 	}
 	
 	@Bean
-	public ModelMapper modelMapper() {
+	ModelMapper modelMapper() {
 		return new ModelMapper();
 	}
 	
 
-//	@Override
-//	public void run(String... args) throws Exception {
-//		Optional<Role> adminRole = roleRepository.findByRoleName("ROLE_ADMIN");
-//		Optional<Role> userRole = roleRepository.findByRoleName("ROLE_USER");
-//		
-//		if(adminRole.isEmpty()) {
-//			Role newAdminRole=new Role();
-//			newAdminRole.setRoleId(UUID.randomUUID().toString());
-//			newAdminRole.setRoleName("ROLE_ADMIN");
-//			roleRepository.save(newAdminRole);
-//		}
-//		if(userRole.isEmpty()) {
-//			Role newUserRole=new Role();
-//			newUserRole.setRoleId(UUID.randomUUID().toString());
-//			newUserRole.setRoleName("ROLE_USER");
-//			roleRepository.save(newUserRole);
-//		}
+	@Override
+	public void run(String... args) throws Exception {
+		Optional<Role> adminRole = roleRepository.findByRoleName("ROLE_ADMIN");
+		Optional<Role> userRole = roleRepository.findByRoleName("ROLE_USER");
+		
+		if(adminRole.isEmpty()) {
+			Role newAdminRole=new Role();
+			newAdminRole.setRoleId(UUID.randomUUID().toString());
+			newAdminRole.setRoleName("ROLE_ADMIN");
+			roleRepository.save(newAdminRole);
+		}
+		if(userRole.isEmpty()) {
+			Role newUserRole=new Role();
+			newUserRole.setRoleId(UUID.randomUUID().toString());
+			newUserRole.setRoleName("ROLE_USER");
+			roleRepository.save(newUserRole);
+		}
 //		CustomUserDetail custom=new CustomUserDetail(userRepository.findByEmail("janesmith@example.com").orElseThrow());
 //		String token=jwtHelper.generateToken(custom);
 //		log.info("Token=={}",token);
@@ -54,4 +62,5 @@ public class SpringCoreConceptApplication {
 //}
 	
 
+}
 }
